@@ -23,4 +23,9 @@ public class AgendaDbContext : DbContext
     public DbSet<Medida> Medidas => Set<Medida>();
     public DbSet<Ejercicio> Ejercicios => Set<Ejercicio>();
     public DbSet<EjercicioPeso> EjercicioPesos => Set<EjercicioPeso>();
+    public DbSet<TipoComida> TiposComida => Set<TipoComida>();
+    public DbSet<Comida> Comidas => Set<Comida>();
+    public DbSet<ComboComida> CombosComida => Set<ComboComida>();
+    public DbSet<ComboComidaDetalle> ComboComidaDetalles => Set<ComboComidaDetalle>();
+    public DbSet<ComidaHecha> ComidasHechas => Set<ComidaHecha>();
 }
