@@ -1,0 +1,19 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+
+## Visual Studio
+.vs/
+
+## Rider
+.idea/
+
+## Publish output
+publish/
+*.pubxml.user
+
+## Secrets (never commit real connection strings/credentials)
+appsettings.Production.json
+appsettings.*.local.json
