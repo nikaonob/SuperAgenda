@@ -20,4 +20,7 @@ public class AgendaDbContext : DbContext
     public DbSet<HealthRegistro> HealthRegistros => Set<HealthRegistro>();
     public DbSet<TypeModel> TypeModels => Set<TypeModel>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<Medida> Medidas => Set<Medida>();
+    public DbSet<Ejercicio> Ejercicios => Set<Ejercicio>();
+    public DbSet<EjercicioPeso> EjercicioPesos => Set<EjercicioPeso>();
 }
