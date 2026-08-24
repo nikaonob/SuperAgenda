@@ -26,7 +26,18 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AgendaDbContext>();
-    db.Database.EnsureCreated();
+    for (var attempt = 1; ; attempt++)
+    {
+        try
+        {
+            db.Database.EnsureCreated();
+            break;
+        }
+        catch (Exception) when (attempt < 10)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+        }
+    }
 }
 
 // Configure the HTTP request pipeline.
@@ -35,8 +46,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseCors();
 

@@ -1,4 +1,4 @@
-name: Deploy SuperAgenda.Api a DonWeb
+name: Deploy SuperAgenda a DonWeb VPS
 
 on:
   push:
@@ -6,29 +6,16 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
+      - name: Deploy por SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore
-        run: dotnet restore SuperAgenda.Api/SuperAgenda.Api.csproj
-
-      - name: Publish
-        run: dotnet publish SuperAgenda.Api/SuperAgenda.Api.csproj -c Release -o publish
-
-      - name: Deploy por FTPS a DonWeb
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.DONWEB_FTP_SERVER }}
-          username: ${{ secrets.DONWEB_FTP_USERNAME }}
-          password: ${{ secrets.DONWEB_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./publish/
-          server-dir: ${{ secrets.DONWEB_FTP_TARGET_DIR }}
+          host: ${{ secrets.VPS_HOST }}
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/superagenda
+            git pull origin main
+            docker compose up -d --build

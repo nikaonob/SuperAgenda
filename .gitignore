@@ -17,3 +17,4 @@ publish/
 ## Secrets (never commit real connection strings/credentials)
 appsettings.Production.json
 appsettings.*.local.json
+.env
