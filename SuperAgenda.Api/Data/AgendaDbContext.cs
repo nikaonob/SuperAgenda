@@ -10,4 +10,14 @@ public class AgendaDbContext : DbContext
     }
 
     public DbSet<Evento> Eventos => Set<Evento>();
+    public DbSet<Entidad> Entidades => Set<Entidad>();
+    public DbSet<Cuenta> Cuentas => Set<Cuenta>();
+    public DbSet<TipoDeMoneda> TiposDeMoneda => Set<TipoDeMoneda>();
+    public DbSet<DolarHoy> DolarHoy => Set<DolarHoy>();
+    public DbSet<Transaccion> Transacciones => Set<Transaccion>();
+    public DbSet<Agent> Agents => Set<Agent>();
+    public DbSet<HealthPersona> HealthPersonas => Set<HealthPersona>();
+    public DbSet<HealthRegistro> HealthRegistros => Set<HealthRegistro>();
+    public DbSet<TypeModel> TypeModels => Set<TypeModel>();
+    public DbSet<Usuario> Usuarios => Set<Usuario>();
 }
