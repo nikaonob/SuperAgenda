@@ -53,16 +53,23 @@ public class UsuariosController : ControllerBase
     public async Task<IActionResult> Put(int id, Usuario item)
     {
         if (id != item.Id) return BadRequest();
-        _context.Entry(item).State = EntityState.Modified;
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!await _context.Usuarios.AnyAsync(e => e.Id == id)) return NotFound();
-            throw;
-        }
+
+        var existente = await _context.Usuarios.FindAsync(id);
+        if (existente is null) return NotFound();
+
+        existente.Name = item.Name;
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
+    [HttpPut("{id:int}/password")]
+    public async Task<IActionResult> CambiarPassword(int id, CambiarPasswordRequest request)
+    {
+        var item = await _context.Usuarios.FindAsync(id);
+        if (item is null) return NotFound();
+
+        item.Password = _hasher.HashPassword(item, request.Password);
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
