@@ -16,4 +16,7 @@ public class UsuarioConfiguracion
 
     [Column("menu_principal"), MaxLength(20)]
     public string? MenuPrincipal { get; set; }
+
+    [Column("id_health_persona_default")]
+    public int? IdHealthPersonaDefault { get; set; }
 }

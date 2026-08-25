@@ -46,6 +46,7 @@ public class MiConfiguracionController : ControllerBase
 
         config.Color = string.IsNullOrWhiteSpace(request.Color) ? "#4F46E5" : request.Color;
         config.MenuPrincipal = request.MenuPrincipal;
+        config.IdHealthPersonaDefault = request.IdHealthPersonaDefault;
 
         await _context.SaveChangesAsync();
         return config;
