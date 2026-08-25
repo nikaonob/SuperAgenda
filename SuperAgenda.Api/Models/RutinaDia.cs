@@ -13,6 +13,6 @@ public class RutinaDia
 
     public int Orden { get; set; }
 
-    [Column("id_usuario")]
-    public int? IdUsuario { get; set; }
+    [Column("id_health_persona")]
+    public int IdHealthPersona { get; set; }
 }

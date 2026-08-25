@@ -17,25 +17,19 @@ public class RutinaDiasController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RutinaDia>>> GetAll()
-    {
-        var userId = this.CurrentUserId();
-        return await _context.RutinaDias.Where(r => r.IdUsuario == userId).OrderBy(r => r.Orden).ToListAsync();
-    }
+    public async Task<ActionResult<IEnumerable<RutinaDia>>> GetAll() => await _context.RutinaDias.OrderBy(r => r.Orden).ToListAsync();
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<RutinaDia>> Get(int id)
     {
-        var userId = this.CurrentUserId();
         var item = await _context.RutinaDias.FindAsync(id);
-        if (item is null || item.IdUsuario != userId) return NotFound();
+        if (item is null) return NotFound();
         return item;
     }
 
     [HttpPost]
     public async Task<ActionResult<RutinaDia>> Post(RutinaDia item)
     {
-        item.IdUsuario = this.CurrentUserId();
         _context.RutinaDias.Add(item);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
@@ -44,14 +38,7 @@ public class RutinaDiasController : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Put(int id, RutinaDia item)
     {
-        var userId = this.CurrentUserId();
         if (id != item.Id) return BadRequest();
-
-        var existente = await _context.RutinaDias.AsNoTracking().FirstOrDefaultAsync(r => r.Id == id);
-        if (existente is null) return NotFound();
-        if (existente.IdUsuario != userId) return Forbid();
-
-        item.IdUsuario = userId;
         _context.Entry(item).State = EntityState.Modified;
         try
         {
@@ -68,11 +55,8 @@ public class RutinaDiasController : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var userId = this.CurrentUserId();
         var item = await _context.RutinaDias.FindAsync(id);
         if (item is null) return NotFound();
-        if (item.IdUsuario != userId) return Forbid();
-
         _context.RutinaDias.Remove(item);
         await _context.SaveChangesAsync();
         return NoContent();
