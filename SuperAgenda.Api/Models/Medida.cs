@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SuperAgenda.Api.Models;
@@ -11,8 +10,8 @@ public class Medida
     [Column("id_health_persona")]
     public int IdHealthPersona { get; set; }
 
-    [Required, MaxLength(50)]
-    public string Tipo { get; set; } = string.Empty;
+    [Column("id_tipo_medida")]
+    public int IdTipoMedida { get; set; }
 
     [Column(TypeName = "decimal(6,2)")]
     public decimal Valor { get; set; }

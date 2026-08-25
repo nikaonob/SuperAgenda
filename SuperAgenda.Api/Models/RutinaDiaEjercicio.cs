@@ -14,4 +14,9 @@ public class RutinaDiaEjercicio
     public int IdEjercicio { get; set; }
 
     public int Orden { get; set; }
+
+    [Column(TypeName = "decimal(6,2)")]
+    public decimal? Peso { get; set; }
+
+    public string? Repeticiones { get; set; }
 }

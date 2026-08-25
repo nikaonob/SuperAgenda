@@ -35,6 +35,23 @@ public class RutinaDiaEjerciciosController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
     }
 
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> Put(int id, RutinaDiaEjercicio item)
+    {
+        if (id != item.Id) return BadRequest();
+        _context.Entry(item).State = EntityState.Modified;
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await _context.RutinaDiaEjercicios.AnyAsync(e => e.Id == id)) return NotFound();
+            throw;
+        }
+        return NoContent();
+    }
+
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

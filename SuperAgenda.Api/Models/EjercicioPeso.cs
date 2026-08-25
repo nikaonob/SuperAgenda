@@ -15,4 +15,7 @@ public class EjercicioPeso
 
     [Column(TypeName = "date")]
     public DateTime Fecha { get; set; }
+
+    [Column("id_usuario")]
+    public int? IdUsuario { get; set; }
 }
