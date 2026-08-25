@@ -10,4 +10,7 @@ public class Entidad
 
     [MaxLength(100)]
     public string? Nombre { get; set; }
+
+    [Column("id_usuario")]
+    public int? IdUsuario { get; set; }
 }
