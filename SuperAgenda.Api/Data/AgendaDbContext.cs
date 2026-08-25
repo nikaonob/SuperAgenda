@@ -21,6 +21,7 @@ public class AgendaDbContext : DbContext
     public DbSet<TypeModel> TypeModels => Set<TypeModel>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
     public DbSet<Medida> Medidas => Set<Medida>();
+    public DbSet<AppVersion> AppVersions => Set<AppVersion>();
     public DbSet<TipoMedida> TiposMedida => Set<TipoMedida>();
     public DbSet<Ejercicio> Ejercicios => Set<Ejercicio>();
     public DbSet<EjercicioPeso> EjercicioPesos => Set<EjercicioPeso>();
