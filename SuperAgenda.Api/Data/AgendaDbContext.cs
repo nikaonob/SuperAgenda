@@ -35,4 +35,5 @@ public class AgendaDbContext : DbContext
     public DbSet<RutinaDia> RutinaDias => Set<RutinaDia>();
     public DbSet<RutinaDiaEjercicio> RutinaDiaEjercicios => Set<RutinaDiaEjercicio>();
     public DbSet<Tarea> Tareas => Set<Tarea>();
+    public DbSet<UsuarioTarea> UsuarioTareas => Set<UsuarioTarea>();
 }
