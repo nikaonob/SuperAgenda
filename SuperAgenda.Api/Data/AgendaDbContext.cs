@@ -28,4 +28,5 @@ public class AgendaDbContext : DbContext
     public DbSet<ComboComida> CombosComida => Set<ComboComida>();
     public DbSet<ComboComidaDetalle> ComboComidaDetalles => Set<ComboComidaDetalle>();
     public DbSet<ComidaHecha> ComidasHechas => Set<ComidaHecha>();
+    public DbSet<ComidaDia> ComidasDia => Set<ComidaDia>();
 }
