@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SuperAgenda.Api.Models;
 
@@ -10,6 +11,7 @@ public class Usuario
     [Column(TypeName = "varchar(50)")]
     public string? Name { get; set; }
 
-    [Column(TypeName = "varchar(50)")]
+    [Column(TypeName = "nvarchar(200)")]
+    [JsonIgnore]
     public string? Password { get; set; }
 }

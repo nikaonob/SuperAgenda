@@ -21,6 +21,7 @@ services:
       dockerfile: Dockerfile
     environment:
       ConnectionStrings__DefaultConnection: "Server=db;Database=SuperAgendaDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      Jwt__Key: "${JWT_KEY}"
     ports:
       - "8080:8080"
     depends_on:

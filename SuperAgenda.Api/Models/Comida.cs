@@ -16,4 +16,7 @@ public class Comida
 
     [Column("calorias_100g", TypeName = "decimal(6,2)")]
     public decimal Calorias100g { get; set; }
+
+    [Column("id_usuario")]
+    public int? IdUsuario { get; set; }
 }

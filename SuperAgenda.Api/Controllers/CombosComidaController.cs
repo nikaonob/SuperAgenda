@@ -30,6 +30,7 @@ public class CombosComidaController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ComboComida>> Post(ComboComida item)
     {
+        item.IdUsuario = this.CurrentUserId();
         _context.CombosComida.Add(item);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(Get), new { id = item.Id }, item);

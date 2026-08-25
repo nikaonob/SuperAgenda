@@ -30,6 +30,7 @@ public class ComidasDiaController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ComidaDia>> Post(ComidaDia item)
     {
+        item.IdUsuario = this.CurrentUserId();
         _context.ComidasDia.Add(item);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
