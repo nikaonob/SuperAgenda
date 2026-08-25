@@ -16,6 +16,6 @@ public class ComidaDia
     [Column("fecha_hora")]
     public DateTime FechaHora { get; set; }
 
-    [Column("id_usuario")]
-    public int? IdUsuario { get; set; }
+    [Column("id_health_persona")]
+    public int IdHealthPersona { get; set; }
 }
