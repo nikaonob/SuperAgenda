@@ -31,6 +31,7 @@ public class AgendaDbContext : DbContext
     public DbSet<ComboComidaDetalle> ComboComidaDetalles => Set<ComboComidaDetalle>();
     public DbSet<ComidaHecha> ComidasHechas => Set<ComidaHecha>();
     public DbSet<ComidaDia> ComidasDia => Set<ComidaDia>();
+    public DbSet<MenuPlanificado> MenuPlanificado => Set<MenuPlanificado>();
     public DbSet<UsuarioCuenta> UsuarioCuentas => Set<UsuarioCuenta>();
     public DbSet<UsuarioHealthPersona> UsuarioHealthPersonas => Set<UsuarioHealthPersona>();
     public DbSet<UsuarioConfiguracion> UsuarioConfiguraciones => Set<UsuarioConfiguracion>();
