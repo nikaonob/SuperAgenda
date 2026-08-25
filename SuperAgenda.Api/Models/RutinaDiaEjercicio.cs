@@ -12,4 +12,6 @@ public class RutinaDiaEjercicio
 
     [Column("id_ejercicio")]
     public int IdEjercicio { get; set; }
+
+    public int Orden { get; set; }
 }
