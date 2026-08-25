@@ -13,5 +13,6 @@ public class ComidaDia
     [Column("cantidad_gramos", TypeName = "decimal(6,2)")]
     public decimal CantidadGramos { get; set; }
 
+    [Column("fecha_hora")]
     public DateTime FechaHora { get; set; }
 }

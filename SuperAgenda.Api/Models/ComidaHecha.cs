@@ -10,5 +10,6 @@ public class ComidaHecha
     [Column("id_combo")]
     public int IdCombo { get; set; }
 
+    [Column("fecha_hora")]
     public DateTime FechaHora { get; set; }
 }
