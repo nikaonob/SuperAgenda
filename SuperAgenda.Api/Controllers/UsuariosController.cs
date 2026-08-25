@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SuperAgenda.Api.Data;
 using SuperAgenda.Api.Models;
+using SuperAgenda.Api.Models.Auth;
 
 namespace SuperAgenda.Api.Controllers;
 
@@ -30,12 +31,10 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Usuario>> Post(Usuario item)
+    public async Task<ActionResult<Usuario>> Post(LoginRequest request)
     {
-        if (!string.IsNullOrEmpty(item.Password))
-        {
-            item.Password = _hasher.HashPassword(item, item.Password);
-        }
+        var item = new Usuario { Name = request.Name };
+        item.Password = _hasher.HashPassword(item, request.Password);
 
         _context.Usuarios.Add(item);
         await _context.SaveChangesAsync();
