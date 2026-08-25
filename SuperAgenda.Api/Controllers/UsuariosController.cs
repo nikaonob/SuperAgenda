@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SuperAgenda.Api.Data;
@@ -10,6 +11,7 @@ namespace SuperAgenda.Api.Controllers;
 public class UsuariosController : ControllerBase
 {
     private readonly AgendaDbContext _context;
+    private readonly PasswordHasher<Usuario> _hasher = new();
 
     public UsuariosController(AgendaDbContext context)
     {
@@ -30,8 +32,21 @@ public class UsuariosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Usuario>> Post(Usuario item)
     {
+        if (!string.IsNullOrEmpty(item.Password))
+        {
+            item.Password = _hasher.HashPassword(item, item.Password);
+        }
+
         _context.Usuarios.Add(item);
         await _context.SaveChangesAsync();
+
+        var persona = new HealthPersona { NombrePersona = item.Name };
+        _context.HealthPersonas.Add(persona);
+        await _context.SaveChangesAsync();
+
+        _context.UsuarioHealthPersonas.Add(new UsuarioHealthPersona { IdUsuario = item.Id, IdHealthPersona = persona.Id });
+        await _context.SaveChangesAsync();
+
         return CreatedAtAction(nameof(Get), new { id = item.Id }, item);
     }
 
