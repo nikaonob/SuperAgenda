@@ -12,4 +12,9 @@ public class Cuenta
 
     [MaxLength(50)]
     public string? NombreCuenta { get; set; }
+
+    public bool Activo { get; set; } = true;
+
+    [Required, MaxLength(1)]
+    public string Moneda { get; set; } = "P";
 }

@@ -23,8 +23,5 @@ public class Transaccion
 
     public int DolarID { get; set; }
 
-    [Required, MaxLength(1)]
-    public string Moneda { get; set; } = string.Empty;
-
     public DateTime? DatePago { get; set; }
 }
