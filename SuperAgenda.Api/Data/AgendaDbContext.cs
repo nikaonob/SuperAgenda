@@ -15,6 +15,7 @@ public class AgendaDbContext : DbContext
     public DbSet<TipoDeMoneda> TiposDeMoneda => Set<TipoDeMoneda>();
     public DbSet<DolarHoy> DolarHoy => Set<DolarHoy>();
     public DbSet<Transaccion> Transacciones => Set<Transaccion>();
+    public DbSet<TipoTransaccion> TiposTransaccion => Set<TipoTransaccion>();
     public DbSet<Agent> Agents => Set<Agent>();
     public DbSet<HealthPersona> HealthPersonas => Set<HealthPersona>();
     public DbSet<HealthRegistro> HealthRegistros => Set<HealthRegistro>();

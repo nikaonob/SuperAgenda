@@ -24,4 +24,6 @@ public class Transaccion
     public int DolarID { get; set; }
 
     public DateTime? DatePago { get; set; }
+
+    public int TipoID { get; set; }
 }
